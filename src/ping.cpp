@@ -23,8 +23,6 @@ namespace NetUtility
 #define TAG "NetUtility"
 #define BUFFER_SIZE 1500
 
-u_int16_t checksum(uint16_t *buf, int32_t len);
-
 void doping(int signal);
 
 int s;
@@ -47,9 +45,11 @@ void ping(const char *host, int targetTTL)
     // Host resolve domain name service
     hostent *h = gethostbyname(host);
     hostname = h->h_name;
-    ipadrr = inet_ntoa(serveraddr.sin_addr);
+    ipadrr = inet_ntoa(*(struct in_addr *)(h->h_addr));
 
     s = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+    int n = 1;
+
     if (s == -1)
     {
         LOG_D(TAG, "create socket fd failed. errno: %d", errno);
