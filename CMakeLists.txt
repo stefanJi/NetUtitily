@@ -8,4 +8,3 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 include_directories(src/include)
 
 add_executable(ping src/ping.cpp)
-

@@ -27,11 +27,12 @@ void doping(int signal);
 
 int s;
 struct sockaddr_in serveraddr;
-int step = 0;
+int step, max = 0;
 char *hostname, *ipadrr;
 
-void ping(const char *host, int targetTTL)
+void ping(const char *host, int maxstep)
 {
+    max = maxstep;
     struct timeval tval;
     struct itimerval timer;
     struct sigaction act;
@@ -98,7 +99,7 @@ void ping(const char *host, int targetTTL)
     struct sockaddr_in from;
     socklen_t from_len = sizeof(from);
     char buffer[BUFFER_SIZE];
-#pragma clang diagnostic ignored "-Wmissing-noreturn"
+
     while (1)
     {
         bytes = recvfrom(s,
@@ -123,7 +124,7 @@ void ping(const char *host, int targetTTL)
 
 void doping(int signal)
 {
-    if (signal != SIGALRM)
+    if (signal != SIGALRM || step >= max)
     {
         exit(1);
     }
@@ -165,6 +166,6 @@ void doping(int signal)
 
 int main()
 {
-    NetUtility::ping("jiyang.site", 64);
+    NetUtility::ping("jiyang.site", 6);
     return 0;
 }
