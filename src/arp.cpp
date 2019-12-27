@@ -78,15 +78,6 @@ int setupBpf(int fd, const char *ifname)
         return -1;
     }
 
-    // u_int tstamp;
-    // tstamp = BPF_T_NANOTIME;
-
-    // if (ioctl(fd, BIOCSTSTAMP, &tstamp) < 0)
-    // {
-    //     perror("BIOCSTSTAMP faild: ");
-    //     return -1;
-    // }
-
     int enable = 1;
     if (ioctl(fd, BIOCIMMEDIATE, &enable) < 0)
     {
