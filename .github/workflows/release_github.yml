@@ -17,10 +17,9 @@ jobs:
         run: |
           echo "test upload"
           ls -l
-          echo $BinaryFile
       - name: Upload
         uses: stefanji/action-gh-release@releases/test
         with:
-          files: ${BinaryFile}
+          files: ${{github.sha}}.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
