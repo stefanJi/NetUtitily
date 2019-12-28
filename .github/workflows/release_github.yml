@@ -8,6 +8,8 @@ jobs:
   release-to-gitHub:
     name: Release to github
     runs-on: ubuntu-latest
+    env:
+      BinaryFile: "${GITHUB_REF:10}"
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -19,10 +21,10 @@ jobs:
         run: |
           echo "test upload"
           ls -l
-          echo "${GITHUB_REF:10}"
+          echo $BinaryFile
       - name: Upload
         uses: stefanji/action-gh-release@releases/test
         with:
-          files: ${{GITHUB_REF:10}}.txt
+          files: $BinaryFile
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
