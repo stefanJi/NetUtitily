@@ -21,7 +21,7 @@ jobs:
           ls -l
           echo "${GITHUB_REF:10}"
       - name: Upload
-        uses: stefanji/action-gh-release@releases/test1
+        uses: stefanji/action-gh-release@releases/test
         with:
           files: "${GITHUB_REF:10}.txt"
         env:
