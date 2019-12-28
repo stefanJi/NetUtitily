@@ -21,6 +21,6 @@ jobs:
       - name: Upload
         uses: stefanji/action-gh-release@releases/test
         with:
-          files: ${{BinaryFile}}
+          files: ${BinaryFile}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
