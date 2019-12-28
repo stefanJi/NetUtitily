@@ -20,7 +20,7 @@ jobs:
           echo "test upload"
           ls -l
       - name: Upload
-        uses: stefanji/action-gh-release@release/test3
+        uses: stefanji/action-gh-release@releases/test3
         with:
           files: ${GITHUB_REF:10}.txt
         env:
