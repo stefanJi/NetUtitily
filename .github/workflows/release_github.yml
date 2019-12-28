@@ -23,6 +23,6 @@ jobs:
       - name: Upload
         uses: stefanji/action-gh-release@releases/test
         with:
-          files: "${GITHUB_REF:10}.txt"
+          files: ${{GITHUB_REF:10}}.txt
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
